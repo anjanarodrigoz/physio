@@ -191,7 +191,7 @@ const LandingPage = () => {
                 </Button>
               </Link>
               <Link to="/register">
-                <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 text-base border-primary-200 hover:bg-primary-50">
+                <Button size="lg" variant="outline" className="w-full sm:w-auto h-14 px-8 text-base border-primary-200 hover:bg-primary-600 hover:text-white hover:border-primary-600 transition-all">
                   Join as Physiotherapist
                 </Button>
               </Link>
@@ -467,7 +467,7 @@ const LandingPage = () => {
                 </Button>
               </Link>
               <Link to="/register">
-                <Button size="lg" variant="outline" className="border-2 border-white text-white hover:bg-white/10 h-14 px-8 text-base font-semibold">
+                <Button size="lg" variant="outline" className="border-2 border-white text-white h-14 px-8 text-base font-semibold">
                   Join as Professional
                 </Button>
               </Link>
