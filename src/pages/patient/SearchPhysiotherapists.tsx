@@ -33,8 +33,8 @@ const SearchPhysiotherapists = () => {
 
   // Filters
   const [searchTerm, setSearchTerm] = useState('')
-  const [selectedDistrict, setSelectedDistrict] = useState('')
-  const [selectedSpecialization, setSelectedSpecialization] = useState('')
+  const [selectedDistrict, setSelectedDistrict] = useState('all')
+  const [selectedSpecialization, setSelectedSpecialization] = useState('all')
 
   // Filter options
   const [districts, setDistricts] = useState<string[]>([])
@@ -77,11 +77,11 @@ const SearchPhysiotherapists = () => {
           filters.search = searchTerm
         }
 
-        if (selectedDistrict) {
+        if (selectedDistrict && selectedDistrict !== 'all') {
           filters.district = selectedDistrict
         }
 
-        if (selectedSpecialization) {
+        if (selectedSpecialization && selectedSpecialization !== 'all') {
           filters.specialization = [selectedSpecialization]
         }
 
@@ -121,8 +121,8 @@ const SearchPhysiotherapists = () => {
 
   const handleClearFilters = () => {
     setSearchTerm('')
-    setSelectedDistrict('')
-    setSelectedSpecialization('')
+    setSelectedDistrict('all')
+    setSelectedSpecialization('all')
   }
 
   return (
@@ -187,7 +187,7 @@ const SearchPhysiotherapists = () => {
                   <SelectValue placeholder="All Districts" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Districts</SelectItem>
+                  <SelectItem value="all">All Districts</SelectItem>
                   {districts.map((district) => (
                     <SelectItem key={district} value={district}>
                       {district}
@@ -201,7 +201,7 @@ const SearchPhysiotherapists = () => {
                   <SelectValue placeholder="All Specializations" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="">All Specializations</SelectItem>
+                  <SelectItem value="all">All Specializations</SelectItem>
                   {specializations.map((spec) => (
                     <SelectItem key={spec} value={spec}>
                       {spec}
@@ -211,10 +211,10 @@ const SearchPhysiotherapists = () => {
               </Select>
             </div>
 
-            {(searchTerm || selectedDistrict || selectedSpecialization) && (
+            {(searchTerm || (selectedDistrict && selectedDistrict !== 'all') || (selectedSpecialization && selectedSpecialization !== 'all')) && (
               <div className="mt-4 flex items-center justify-between">
                 <p className="text-sm text-gray-600">
-                  Active filters: {[searchTerm && 'search', selectedDistrict && 'district', selectedSpecialization && 'specialization'].filter(Boolean).join(', ')}
+                  Active filters: {[searchTerm && 'search', selectedDistrict !== 'all' && 'district', selectedSpecialization !== 'all' && 'specialization'].filter(Boolean).join(', ')}
                 </p>
                 <Button variant="outline" size="sm" onClick={handleClearFilters}>
                   Clear Filters
