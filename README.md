@@ -31,6 +31,8 @@ A comprehensive marketplace platform connecting patients with qualified physioth
 
 ## 🎨 Design Features
 
+- **Medical Blue Theme** - Professional eChannelling-inspired color scheme (#0066CC)
+- **Healing-Focused UI** - Calming, trustworthy design for healthcare
 - **Modern UI/UX** - Clean, professional design with smooth animations
 - **Glass Morphism** - Frosted glass effects for depth
 - **Gradient Accents** - Subtle color gradients throughout
@@ -68,6 +70,13 @@ A comprehensive marketplace platform connecting patients with qualified physioth
 - **QR Code** - Event ticket generation
 - **date-fns** - Date utilities
 - **i18next** - Multi-language support (English/Sinhala/Tamil)
+
+### Backend
+- **Node.js & Express** - RESTful API server
+- **MongoDB & Mongoose** - Database and ODM
+- **JWT** - Authentication
+- **bcryptjs** - Password hashing
+- **CORS** - Cross-origin resource sharing
 
 ## 📁 Project Structure
 
@@ -108,9 +117,12 @@ src/
 
 ### Prerequisites
 - Node.js 18+
+- MongoDB 6.0+
 - npm or yarn
 
 ### Installation
+
+#### Frontend Setup
 
 1. **Clone the repository**
 ```bash
@@ -118,14 +130,55 @@ git clone <repository-url>
 cd physio
 ```
 
-2. **Install dependencies**
+2. **Install frontend dependencies**
 ```bash
 npm install --legacy-peer-deps
 ```
 
-3. **Start development server**
+3. **Create .env file**
 ```bash
+cp .env.example .env
+```
+
+#### Backend Setup
+
+4. **Install backend dependencies**
+```bash
+cd backend
+npm install
+```
+
+5. **Configure backend**
+```bash
+cp .env.example .env
+# Update .env with your MongoDB URI
+```
+
+6. **Seed sample data**
+```bash
+npm run seed
+```
+
+### Running the Application
+
+1. **Start MongoDB**
+```bash
+# Make sure MongoDB is running on localhost:27017
+mongod
+```
+
+2. **Start backend server (Terminal 1)**
+```bash
+cd backend
 npm run dev
+# Backend runs on http://localhost:5000
+```
+
+3. **Start frontend development server (Terminal 2)**
+```bash
+# From project root
+npm run dev
+# Frontend runs on http://localhost:5173
 ```
 
 4. **Open in browser**
@@ -142,20 +195,37 @@ http://localhost:5173
 
 ## 🎯 Demo Credentials
 
-### Patient Login
-- Email: `patient@example.com`
-- Password: any password
+After running `npm run seed` in the backend, you can login with these accounts:
 
-### Physiotherapist Login
-- Email: `physio@example.com` (must include 'physio' in email)
-- Password: any password
+### Physiotherapist Logins
+
+1. **Nimal Perera** - Sports Physiotherapy (Colombo)
+   - Email: `nimal.perera@physioconnect.lk`
+   - Password: `password123`
+
+2. **Amara Silva** - Neurological Physiotherapy (Kandy)
+   - Email: `amara.silva@physioconnect.lk`
+   - Password: `password123`
+
+3. **Priya Fernando** - Pediatric Physiotherapy (Galle)
+   - Email: `priya.fernando@physioconnect.lk`
+   - Password: `password123`
+
+4. **Rashmi Jayawardena** - Women's Health (Negombo)
+   - Email: `rashmi.jayawardena@physioconnect.lk`
+   - Password: `password123`
+
+5. **Kumar Ratnayake** - Orthopedic Physiotherapy (Maharagama)
+   - Email: `kumar.ratnayake@physioconnect.lk`
+   - Password: `password123`
 
 ## 🎨 Design System
 
-### Colors
-- **Primary**: #0891b2 (Cyan 600)
-- **Secondary**: #06b6d4 (Cyan 500)
-- **Accent**: #f59e0b (Amber 500)
+### Colors (eChannelling-Inspired Medical Blue)
+- **Primary**: #0066CC (Medical Blue)
+- **Secondary**: #4A90E2 (Light Blue)
+- **Accent**: #00C4B4 (Teal)
+- **Healing Colors**: Professional, calming, trustworthy palette
 - **Neutral**: Gray scale
 
 ### Typography
