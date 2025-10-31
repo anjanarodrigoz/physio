@@ -254,70 +254,69 @@ const SearchPhysiotherapists = () => {
             {physiotherapists.length > 0 ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {physiotherapists.map((physio) => (
-                  <Card
-                    key={physio._id}
-                    className="card-hover cursor-pointer border-primary-100 hover:border-primary-300 transition-all"
-                  >
-                    <CardHeader>
-                      <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-secondary-500 flex items-center justify-center">
-                          <User className="w-8 h-8 text-white" />
-                        </div>
-                        <div className="flex-1">
-                          <CardTitle className="text-lg text-primary-700">
-                            Dr. {physio.firstName} {physio.lastName}
-                          </CardTitle>
-                          <CardDescription className="text-sm">
-                            {physio.specializations.join(', ') || 'General Physiotherapy'}
-                          </CardDescription>
-                        </div>
-                      </div>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="space-y-3">
-                        {/* Location */}
-                        <div className="flex items-center gap-2 text-sm text-gray-600">
-                          <MapPin className="w-4 h-4 text-primary-500" />
-                          <span>{physio.address.city}, {physio.address.district}</span>
-                        </div>
-
-                        {/* Rating */}
-                        <div className="flex items-center gap-2">
-                          <div className="flex items-center gap-1 text-yellow-500">
-                            <Star className="w-4 h-4 fill-current" />
-                            <span className="font-semibold text-gray-900">{physio.rating.toFixed(1)}</span>
+                  <Link key={physio._id} to={`/physiotherapist/${physio._id}`}>
+                    <Card className="card-hover cursor-pointer border-primary-100 hover:border-primary-300 transition-all h-full">
+                      <CardHeader>
+                        <div className="flex items-start gap-4">
+                          <div className="w-16 h-16 rounded-full bg-gradient-to-br from-primary-400 to-secondary-500 flex items-center justify-center">
+                            <User className="w-8 h-8 text-white" />
                           </div>
-                          <span className="text-sm text-gray-500">
-                            ({physio.totalReviews} review{physio.totalReviews !== 1 ? 's' : ''})
-                          </span>
+                          <div className="flex-1">
+                            <CardTitle className="text-lg text-primary-700">
+                              Dr. {physio.firstName} {physio.lastName}
+                            </CardTitle>
+                            <CardDescription className="text-sm">
+                              {physio.specializations.join(', ') || 'General Physiotherapy'}
+                            </CardDescription>
+                          </div>
                         </div>
+                      </CardHeader>
+                      <CardContent>
+                        <div className="space-y-3">
+                          {/* Location */}
+                          <div className="flex items-center gap-2 text-sm text-gray-600">
+                            <MapPin className="w-4 h-4 text-primary-500" />
+                            <span>{physio.address.city}, {physio.address.district}</span>
+                          </div>
 
-                        {/* Experience */}
-                        <div className="text-sm text-gray-600">
-                          <span className="font-medium">{physio.experience}</span> years experience
+                          {/* Rating */}
+                          <div className="flex items-center gap-2">
+                            <div className="flex items-center gap-1 text-yellow-500">
+                              <Star className="w-4 h-4 fill-current" />
+                              <span className="font-semibold text-gray-900">{physio.rating.toFixed(1)}</span>
+                            </div>
+                            <span className="text-sm text-gray-500">
+                              ({physio.totalReviews} review{physio.totalReviews !== 1 ? 's' : ''})
+                            </span>
+                          </div>
+
+                          {/* Experience */}
+                          <div className="text-sm text-gray-600">
+                            <span className="font-medium">{physio.experience}</span> years experience
+                          </div>
+
+                          {/* Price */}
+                          <div className="pt-3 border-t border-gray-200">
+                            <p className="text-sm font-medium text-gray-900">
+                              {getPriceRange(physio.servicePackages)}
+                            </p>
+                            <p className="text-xs text-gray-500">per session</p>
+                          </div>
+
+                          {/* Bio Preview */}
+                          {physio.bio && (
+                            <p className="text-xs text-gray-600 line-clamp-2">
+                              {physio.bio}
+                            </p>
+                          )}
+
+                          <Button className="w-full bg-primary-600 hover:bg-primary-700 mt-2">
+                            View Profile & Book
+                          </Button>
                         </div>
-
-                        {/* Price */}
-                        <div className="pt-3 border-t border-gray-200">
-                          <p className="text-sm font-medium text-gray-900">
-                            {getPriceRange(physio.servicePackages)}
-                          </p>
-                          <p className="text-xs text-gray-500">per session</p>
-                        </div>
-
-                        {/* Bio Preview */}
-                        {physio.bio && (
-                          <p className="text-xs text-gray-600 line-clamp-2">
-                            {physio.bio}
-                          </p>
-                        )}
-
-                        <Button className="w-full bg-primary-600 hover:bg-primary-700 mt-2">
-                          View Profile & Book
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
             ) : (

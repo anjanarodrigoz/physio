@@ -7,6 +7,9 @@ import RegisterPage from '@/pages/auth/RegisterPage'
 import PatientDashboard from '@/pages/patient/Dashboard'
 import PhysiotherapistDashboard from '@/pages/physiotherapist/Dashboard'
 import SearchPhysiotherapists from '@/pages/patient/SearchPhysiotherapists'
+import PhysiotherapistDetail from '@/pages/patient/PhysiotherapistDetail'
+import BookingPage from '@/pages/patient/BookingPage'
+import BookingConfirmation from '@/pages/patient/BookingConfirmation'
 import PhysiotherapistProfile from '@/pages/physiotherapist/Profile'
 import BlogPage from '@/pages/public/BlogPage'
 import EventsPage from '@/pages/public/EventsPage'
@@ -33,6 +36,9 @@ function App() {
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/events" element={<EventsPage />} />
           <Route path="/search" element={<SearchPhysiotherapists />} />
+          <Route path="/physiotherapist/:id" element={<PhysiotherapistDetail />} />
+          <Route path="/book/:id" element={<BookingPage />} />
+          <Route path="/booking/confirmation" element={<BookingConfirmation />} />
 
           {/* Patient Routes */}
           <Route path="/patient/dashboard" element={<PatientDashboard />} />
