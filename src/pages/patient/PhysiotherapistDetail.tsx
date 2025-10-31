@@ -173,13 +173,15 @@ const PhysiotherapistDetail = () => {
                     <h1 className="text-3xl font-heading font-bold text-primary-700 mb-2">
                       Dr. {physiotherapist.firstName} {physiotherapist.lastName}
                     </h1>
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {physiotherapist.specializations.map((spec, index) => (
-                        <Badge key={index} variant="secondary" className="bg-primary-100 text-primary-700">
-                          {spec}
-                        </Badge>
-                      ))}
-                    </div>
+                    {physiotherapist.specializations && physiotherapist.specializations.length > 0 && (
+                      <div className="flex flex-wrap gap-2 mb-3">
+                        {physiotherapist.specializations.map((spec, index) => (
+                          <Badge key={index} variant="secondary" className="bg-primary-100 text-primary-700">
+                            {spec}
+                          </Badge>
+                        ))}
+                      </div>
+                    )}
                   </div>
                   {physiotherapist.isVerified && (
                     <div className="flex items-center gap-2 px-4 py-2 bg-green-50 rounded-lg border border-green-200">
@@ -266,8 +268,9 @@ const PhysiotherapistDetail = () => {
                 <CardDescription>Choose the package that best suits your needs</CardDescription>
               </CardHeader>
               <CardContent>
-                <div className="grid md:grid-cols-3 gap-4">
-                  {physiotherapist.servicePackages.map((pkg, index) => (
+                {physiotherapist.servicePackages && physiotherapist.servicePackages.length > 0 ? (
+                  <div className="grid md:grid-cols-3 gap-4">
+                    {physiotherapist.servicePackages.map((pkg, index) => (
                     <div
                       key={index}
                       className={`p-6 rounded-xl border-2 ${getTierColor(pkg.tier)} transition-all hover:shadow-lg`}
@@ -285,22 +288,27 @@ const PhysiotherapistDetail = () => {
                           <span>{pkg.duration} minutes</span>
                         </div>
                       </div>
-                      <ul className="space-y-2">
-                        {pkg.features.map((feature, fIndex) => (
-                          <li key={fIndex} className="flex items-start gap-2 text-sm text-gray-700">
-                            <CheckCircle2 className="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" />
-                            <span>{feature}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      {pkg.features && pkg.features.length > 0 && (
+                        <ul className="space-y-2">
+                          {pkg.features.map((feature, fIndex) => (
+                            <li key={fIndex} className="flex items-start gap-2 text-sm text-gray-700">
+                              <CheckCircle2 className="w-4 h-4 text-primary-500 mt-0.5 flex-shrink-0" />
+                              <span>{feature}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
                     </div>
                   ))}
-                </div>
+                  </div>
+                ) : (
+                  <p className="text-gray-600 text-center py-4">No service packages available</p>
+                )}
               </CardContent>
             </Card>
 
             {/* Availability */}
-            {physiotherapist.availability && (
+            {physiotherapist.availability && physiotherapist.availability.days && physiotherapist.availability.days.length > 0 && (
               <Card className="border-primary-100">
                 <CardHeader>
                   <CardTitle className="text-primary-700 flex items-center gap-2">
@@ -320,12 +328,14 @@ const PhysiotherapistDetail = () => {
                         ))}
                       </div>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Clock className="w-5 h-5 text-primary-500" />
-                      <span className="text-gray-700">
-                        {physiotherapist.availability.startTime} - {physiotherapist.availability.endTime}
-                      </span>
-                    </div>
+                    {physiotherapist.availability.startTime && physiotherapist.availability.endTime && (
+                      <div className="flex items-center gap-2">
+                        <Clock className="w-5 h-5 text-primary-500" />
+                        <span className="text-gray-700">
+                          {physiotherapist.availability.startTime} - {physiotherapist.availability.endTime}
+                        </span>
+                      </div>
+                    )}
                   </div>
                 </CardContent>
               </Card>
